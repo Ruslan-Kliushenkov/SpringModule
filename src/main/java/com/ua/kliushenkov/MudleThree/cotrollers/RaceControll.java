@@ -24,7 +24,9 @@ public class RaceControll {
     }
 
     @PostMapping("/race/start/")
-    public void startRace(@RequestParam int horseCount, @RequestParam int betOn){
-        raceService.saveRace(raceAction.startRace(horseCount,betOn));
+    public void startRace(@RequestParam int horseCount, @RequestParam int betOn) {
+        /*raceService.saveRace(raceAction.startRace(horseCount,betOn));*/
+        Race race = raceAction.startRace(horseCount,betOn);
+        raceService.saveRace(race);
     }
 }

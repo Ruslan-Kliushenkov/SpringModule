@@ -42,4 +42,8 @@ public class Race {
     public void setBetOn(int betOn) {
         this.betOn = betOn;
     }
+
+    public List<Horse> getHorseList() {
+        return horseList;
+    }
 }

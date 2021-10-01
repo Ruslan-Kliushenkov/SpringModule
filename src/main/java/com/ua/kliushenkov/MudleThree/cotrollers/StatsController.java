@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/stats")
+@RestController()
 public class StatsController {
 
     private final RaceService raceService;
@@ -21,7 +21,7 @@ public class StatsController {
         this.raceService = raceService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Race> getStatistic(){
     return (ArrayList<Race>) raceService.findAll();
     }
