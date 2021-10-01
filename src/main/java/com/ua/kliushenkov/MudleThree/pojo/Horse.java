@@ -13,10 +13,13 @@ public class Horse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column
     private int place;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn()
     private Race race;
+    @Column
     private String name;
 
     public Horse(int id, int place, String name) {

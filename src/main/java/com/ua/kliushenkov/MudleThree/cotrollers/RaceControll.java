@@ -18,12 +18,12 @@ public class RaceControll {
     }
 
 
-    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/race/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Race getRaceById(@PathVariable int id){
        return raceService.findById(id);
     }
 
-    @PostMapping("/start/")
+    @PostMapping("/race/start/")
     public void startRace(@RequestParam int horseCount, @RequestParam int betOn){
         raceService.saveRace(raceAction.startRace(horseCount,betOn));
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController("/stats")
@@ -20,8 +21,8 @@ public class StatsController {
         this.raceService = raceService;
     }
 
-    @GetMapping(value = "/all",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Race> getStatistic(){
-    return raceService.findAll();
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<Race> getStatistic(){
+    return (ArrayList<Race>) raceService.findAll();
     }
 }

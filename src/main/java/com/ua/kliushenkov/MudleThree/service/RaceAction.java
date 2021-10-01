@@ -3,14 +3,12 @@ package com.ua.kliushenkov.MudleThree.service;
 import com.ua.kliushenkov.MudleThree.MyThread.Way;
 import com.ua.kliushenkov.MudleThree.pojo.Horse;
 import com.ua.kliushenkov.MudleThree.pojo.Race;
-import com.ua.kliushenkov.MudleThree.pojo.tiny.ListOfHorse;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RaceAction {
-
+    private static ArrayList<Horse> horses = new ArrayList<>();
     private int bet;
 
 
@@ -32,16 +30,23 @@ public class RaceAction {
 
     private Race showResult() {
         Race race = new Race();
-        List<Horse> horses = new ArrayList<>(ListOfHorse.getListOfHorse());
-
-        for (int i = 0; i < horses.size(); i++) {
-            horses.get(i).setPlace(i + 1);
-            race.addToList(horses.get(i));
+        for (int i = 0; i < this.horses.size(); i++) {
+            this.horses.get(i).setPlace(i + 1);
+            race.addToList(this.horses.get(i));
         }
         race.setBetOn(bet);
         race.setDate(String.valueOf(LocalDateTime.now()));
+        clearTheList();
         return race;
+    }
 
+    public static void addToList(String name){
+        Horse horse = new Horse(name);
+        horses.add(horse);
+    }
+
+    public static void clearTheList(){
+        horses.clear();
     }
 
 }

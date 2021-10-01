@@ -17,7 +17,9 @@ public class Race {
     private int id;
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "race",cascade = CascadeType.MERGE)
     private List<Horse> horseList = new ArrayList<>();
+    @Column
     private String date;
+    @Column
     private int betOn;
 
     public Race(List<Horse> horseList, String date, int betOn) {
