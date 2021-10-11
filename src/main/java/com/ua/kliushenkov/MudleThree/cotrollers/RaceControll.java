@@ -2,31 +2,31 @@ package com.ua.kliushenkov.MudleThree.cotrollers;
 
 
 import com.ua.kliushenkov.MudleThree.pojo.Race;
+import com.ua.kliushenkov.MudleThree.repository.RaceRepository;
 import com.ua.kliushenkov.MudleThree.service.RaceAction;
-import com.ua.kliushenkov.MudleThree.service.RaceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/race")
 public class RaceControll {
 
-    private RaceService raceService;
     private RaceAction raceAction = new RaceAction();
 
-    public RaceControll(RaceService raceService) {
-        this.raceService = raceService;
+    private final RaceRepository raceRepository;
+
+    @Autowired
+    public RaceControll(RaceRepository raceRepository) {
+        this.raceRepository = raceRepository;
     }
 
-
-    @GetMapping(value = "/race/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Race getRaceById(@PathVariable int id){
-       return raceService.findById(id);
+    @GetMapping(value = "/race/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Race getRaceById(@PathVariable Long id) {
+        return raceRepository.findById(id).orElseThrow();
     }
 
     @PostMapping("/race/start/")
     public void startRace(@RequestParam int horseCount, @RequestParam int betOn) {
-        /*raceService.saveRace(raceAction.startRace(horseCount,betOn));*/
-        Race race = raceAction.startRace(horseCount,betOn);
-        raceService.saveRace(race);
+        raceRepository.save(raceAction.startRace(horseCount, betOn));
     }
 }

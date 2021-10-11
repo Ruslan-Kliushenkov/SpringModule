@@ -11,6 +11,8 @@ public class RaceAction {
     private static ArrayList<Horse> horses = new ArrayList<>();
     private int bet;
 
+    public RaceAction() {
+    }
 
     public Race startRace(int countOfHorses, int bet) {
 
@@ -30,22 +32,23 @@ public class RaceAction {
 
     private Race showResult() {
         Race race = new Race();
-        for (int i = 0; i < this.horses.size(); i++) {
-            this.horses.get(i).setPlace(i + 1);
-            race.addToList(this.horses.get(i));
+        for (int i = 0; i < horses.size(); i++) {
+            horses.get(i).setPlace(i + 1);
+            race.addToList(horses.get(i));
         }
         race.setBetOn(bet);
         race.setDate(String.valueOf(LocalDateTime.now()));
         clearTheList();
+
         return race;
     }
 
-    public static void addToList(String name){
+    public static void addToList(String name) {
         Horse horse = new Horse(name);
         horses.add(horse);
     }
 
-    public static void clearTheList(){
+    private static void clearTheList() {
         horses.clear();
     }
 

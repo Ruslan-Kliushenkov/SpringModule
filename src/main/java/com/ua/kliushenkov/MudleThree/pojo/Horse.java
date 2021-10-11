@@ -4,29 +4,23 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Data
 @Getter
 @Setter
+@Entity
+@ToString(of = {"id,name,place"})
+@Table(name = "hrs")
 
 public class Horse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column
     private int place;
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn()
-    private Race race;
+
     @Column
     private String name;
 
-    public Horse(int id, int place, String name) {
-        this.id = id;
-        this.place = place;
-        this.name = name;
-    }
 
     public Horse(String name) {
         this.name = name;
@@ -37,5 +31,13 @@ public class Horse {
 
     public void setPlace(int place) {
         this.place = place;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
