@@ -21,9 +21,20 @@ public class Horse {
     @Column
     private String name;
 
+    @Column
+    private int num;
+
 
     public Horse(String name) {
         this.name = name;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public Horse() {

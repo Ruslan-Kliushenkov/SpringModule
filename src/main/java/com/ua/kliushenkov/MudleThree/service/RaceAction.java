@@ -37,6 +37,11 @@ public class RaceAction {
             race.addToList(horses.get(i));
         }
         race.setBetOn(bet);
+        if(horses.get(0).getNum() == bet){
+            race.setWon(true);
+        }else{
+            race.setWon(false);
+        }
         race.setDate(String.valueOf(LocalDateTime.now()));
         clearTheList();
 
@@ -45,6 +50,7 @@ public class RaceAction {
 
     public static void addToList(String name) {
         Horse horse = new Horse(name);
+        horse.setNum(Integer.parseInt(name.replace("Horse#","")));
         horses.add(horse);
     }
 
